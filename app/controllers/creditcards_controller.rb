@@ -71,12 +71,15 @@ class CreditcardsController < ApplicationController
     respond_to do |format|
       #if @creditcard.save
       if @creditcard.valid?
-        format.html { redirect_to @creditcard, notice: 'Creditcard number is correct.' }
+        number = @creditcard.card_number
+        detector = CreditCardValidations::Detector.new(number)
+
+        format.html { redirect_to @creditcard, notice: 'Creditcard number is correct. Card brand = ' + detector.brand.to_s }
         format.json { render :show, status: :created, location: @creditcard }
       else
         puts( @creditcard.errors.messages )
         #format.html { render :new }
-        format.html { render :index, notice: 'Testerdetest' }
+        format.html { render :index, notice: 'Wrong creditcard number' }
         #format.json { render json: @creditcard.errors, status: :unprocessable_entity }
       end
     end
