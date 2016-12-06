@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Card type:</strong>
+  <%= @creditcard.card_type %>
+</p>
+
+<p>
+  <strong>Card number:</strong>
+  <%= @creditcard.card_number %>
+</p>
+
+<%= link_to 'Edit', edit_creditcard_path(@creditcard) %> |
+<%= link_to 'Back', creditcards_path %>

@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Validate creditcard number</h1>
+
+
+<%= form_for(@creditcard , url: {action: "validate_creditcard"}) do |f| %>
+
+    <% if @creditcard.errors.any? %>
+        <div id="error_explanation">
+          <h2>Opgegeven creditcard nummer is onjuist
+            <!-- %= pluralize(@creditcard.errors.count, "error") % -->
+          </h2>
+          <ul>
+            <% @creditcard.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <label for="creditcard_card_number">Card number</label>
+      <input name="creditcard[card_number]" id="creditcard_card_number" type="number">
+    </div>
+
+
+    <%= button_to 'Validate', creditcards_path(validate_creditcard: @creditcard) %>
+
+<% end %>
